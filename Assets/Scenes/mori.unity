@@ -226,7 +226,8 @@ Transform:
   m_LocalPosition: {x: 9.92, y: 6.6, z: -1.9747438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1739239570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &677488412
@@ -373,9 +374,9 @@ Transform:
   m_GameObject: {fileID: 1173806037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.9585905, y: 4.0988197, z: 1.0893952}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 8.9585905, y: 4.79, z: 0.76}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -452,6 +453,7 @@ GameObject:
   - component: {fileID: 1739239569}
   - component: {fileID: 1739239568}
   - component: {fileID: 1739239571}
+  - component: {fileID: 1739239572}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -527,11 +529,11 @@ Transform:
   m_GameObject: {fileID: 1739239567}
   serializedVersion: 2
   m_LocalRotation: {x: 0.21077135, y: -0, z: -0, w: 0.97753537}
-  m_LocalPosition: {x: 8.03, y: 9.54, z: -13}
+  m_LocalPosition: {x: -1.8900003, y: 5.54, z: -16.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 677488411}
   m_LocalEulerAnglesHint: {x: 24.335, y: 0, z: 0}
 --- !u!114 &1739239571
 MonoBehaviour:
@@ -577,6 +579,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1739239572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739239567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521d4bbc3d9bb0045a9e655317e00908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivityX: 1000
+  mouseSensitivityY: 500
+  playerBody: {fileID: 677488411}
 --- !u!1 &1799306988
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +780,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1739239570}
   - {fileID: 1799306991}
   - {fileID: 4622006327759910228}
   - {fileID: 1186907410}
