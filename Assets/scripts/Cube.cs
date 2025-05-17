@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Cube : MonoBehaviour
 {
-    float now_speed = 10f;
+    public float now_speed = 10f;
     public float jumpForce = 5f;       // ƒWƒƒƒ“ƒv—Í
     private Rigidbody rb;
     private bool isGrounded = true;
@@ -42,7 +42,7 @@ public class Cube : MonoBehaviour
     // ’n–Ê‚Æ‚ÌÚG”»’è
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Plane")
+        if (collision.gameObject.CompareTag("Field"))
         {
             isGrounded = true;
         }
