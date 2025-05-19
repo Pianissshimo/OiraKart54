@@ -594,6 +594,7 @@ MonoBehaviour:
   mouseSensitivityX: 1000
   mouseSensitivityY: 500
   playerBody: {fileID: 677488411}
+  thirdPersonOffset: {x: 0, y: 4, z: -12}
 --- !u!1 &1799306988
 GameObject:
   m_ObjectHideFlags: 0
