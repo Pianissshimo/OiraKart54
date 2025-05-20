@@ -21,22 +21,22 @@ public class player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            this.transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+            this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            this.transform.position += this.transform.right * -1 * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            this.transform.position += Vector3.back * moveSpeed * Time.deltaTime;
+            this.transform.position += this.transform.forward * -1 * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            this.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            this.transform.position += this.transform.right * moveSpeed * Time.deltaTime;
         }
 
         // スペースキーが押されて、かつ地面にいるときジャンプ
