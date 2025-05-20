@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class PlayerUnko : MonoBehaviour
 {
     public float moveSpeed = 5f; // 移動速度（調整可能）
 
@@ -54,6 +54,15 @@ public class player : MonoBehaviour
         if (collision.gameObject.CompareTag("Field"))
         {
             isGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeathZone"))
+        {
+            Debug.Log("ゲームオーバー！");
+            GameManager.Instance.GameOver(); // シングルトンの場合
         }
     }
 }
