@@ -66,12 +66,14 @@ public class MouseLook : MonoBehaviour
     void SwitchToFirstPerson()
     {
         transform.localPosition = firstPersonOffset;
-        transform.localRotation = Quaternion.identity; // 必要なら回転もリセット
+        //transform.localRotation = Quaternion.identity; // 必要なら回転もリセット
+        xRotation = 0f;
     }
 
     void SwitchToThirdPerson()
     {
         transform.localPosition = thirdPersonOffset;
-        transform.localRotation = Quaternion.Euler(19f,0f,0f); // 必要なら回転も調整
+        //transform.localRotation = Quaternion.Euler(19f,0f,0f); // 必要なら回転も調整
+        xRotation = 19f;
     }
 }
