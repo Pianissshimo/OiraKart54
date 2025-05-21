@@ -72,8 +72,16 @@ public class MouseLook : MonoBehaviour
 
     void SwitchToThirdPerson()
     {
+        
         transform.localPosition = thirdPersonOffset;
         //transform.localRotation = Quaternion.Euler(19f,0f,0f); // 必要なら回転も調整
+        
+        /*
+        transform.position = playerBody.position + thirdPersonOffset;
+
+        // プレイヤーを常に注視
+        transform.LookAt(playerBody.position);
+        */
         xRotation = 19f;
     }
 }
