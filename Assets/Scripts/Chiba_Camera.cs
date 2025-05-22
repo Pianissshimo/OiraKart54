@@ -8,15 +8,13 @@ public class Chiba_Camera : MonoBehaviour
     public float mouseSensitivityY = 500f;
     public Transform playerBody; // カメラの親（プレイヤー本体）
 
-    private bool isFirstPerson = true;// 現在の視点状態（初期は一人称）
+    private bool isFirstPerson = false;// 現在の視点状態（初期は一人称）
 
     // カメラの位置（ローカル座標）
     private Vector3 firstPersonOffset = new Vector3(0f, 0f, 0f);  // 一人称視点
-    public Vector3 thirdPersonOffset; // 三人称視点（後ろ上）
+    public static Vector3 thirdPersonOffset = new Vector3(0f, 2f, -4f); // 三人称視点（後ろ上）
 
     private float camera_y;
-
-    public static Vector3 retryCameraPosition;
 
     private float xRotation = 0f;
 
@@ -25,12 +23,7 @@ public class Chiba_Camera : MonoBehaviour
     {
         camera_y = thirdPersonOffset.y;
 
-        retryCameraPosition = thirdPersonOffset;
-        /*
-        transform.localPosition = new Vector3(0f, 0f, 0f);
-        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        */
-        SwitchToFirstPerson();
+        //SwitchToFirstPerson();
     }
 
     // Update is called once per frame
@@ -66,7 +59,7 @@ public class Chiba_Camera : MonoBehaviour
             playerBody.Rotate(Vector3.up * mouseX);
         }
 
-        KeepCameraPosition();
+        //KeepCameraYPosition();
     }
 
     void SwitchToFirstPerson()
@@ -78,10 +71,10 @@ public class Chiba_Camera : MonoBehaviour
     void SwitchToThirdPerson()
     {
         transform.localPosition = thirdPersonOffset;
-        transform.localRotation = Quaternion.Euler(19f, 0f, 0f); // 必要なら回転も調整
+        //transform.localRotation = Quaternion.Euler(19f, 0f, 0f); // 必要なら回転も調整
     }
 
-    void KeepCameraPosition()
+    void KeepCameraYPosition() //無能
     {
         if (isFirstPerson)
         {
