@@ -12,19 +12,20 @@ public class Chiba_Camera : MonoBehaviour
 
     // カメラの位置（ローカル座標）
     private Vector3 firstPersonOffset = new Vector3(0f, 0f, 0f);  // 一人称視点
-    public Vector3 thirdPersonOffset = new Vector3(0f, 4f, -12f); // 三人称視点（後ろ上）
+    public Vector3 thirdPersonOffset; // 三人称視点（後ろ上）
+
     private float camera_y;
+
+    public static Vector3 retryCameraPosition;
 
     private float xRotation = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを非表示＆画面中央に固定
-        Cursor.visible = false;
-
         camera_y = thirdPersonOffset.y;
 
+        retryCameraPosition = thirdPersonOffset;
         /*
         transform.localPosition = new Vector3(0f, 0f, 0f);
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -59,8 +60,11 @@ public class Chiba_Camera : MonoBehaviour
         // カメラの上下回転
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // プレイヤーの左右回転
-        playerBody.Rotate(Vector3.up * mouseX);
+        if(playerBody != null)
+        {
+            // プレイヤーの左右回転
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
 
         KeepCameraPosition();
     }

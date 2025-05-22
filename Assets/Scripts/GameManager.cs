@@ -1,22 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // GameManager‚ğ‚Ç‚±‚©‚ç‚Å‚àg‚¦‚é‚æ‚¤‚É‚·‚é
+    // GameManagerï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
     public static GameManager Instance;
 
-    // ƒQ[ƒ€ƒI[ƒo[‰æ–ÊiCanvas‚ÌUIj
+    // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ÊiCanvasï¿½ï¿½UIï¿½j
     public GameObject gameOverUI;
 
     public GameObject player;
 
+    public Rigidbody rb;
+
     void Awake()
     {
-        // ƒVƒ“ƒOƒ‹ƒgƒ“i1‚Â‚¾‚¯‘¶İ‚³‚¹‚éj
+        // ï¿½Vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½gï¿½ï¿½ï¿½i1ï¿½Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ï¿½ï¿½j
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ƒV[ƒ“Ø‚è‘Ö‚¦‚Å‚àÁ‚¦‚È‚¢
+            DontDestroyOnLoad(gameObject); // ï¿½Vï¿½[ï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         }
         else
         {
@@ -24,25 +27,59 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ƒQ[ƒ€ƒI[ƒo[ˆ—
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked; // ï¿½}ï¿½Eï¿½Xï¿½Jï¿½[ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½ï¿½ÉŒÅ’ï¿½
+
+        SaveManager.Instance.SavePosition(player.transform.position);
+    }
+
+    // ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½
     public void GameOver()
     {
-        // q‚©‚çØ‚è—£‚·
-        Camera.main.transform.parent = null;
-
-        // ƒvƒŒƒCƒ„[‚ğÁ‚·
         if (player != null)
         {
-            Destroy(player);
+            Camera.main.transform.parent = null;
+
+            player.SetActive(false);
         }
 
-        // UI‚ğ•\¦
+        // UIï¿½ï¿½\ï¿½ï¿½
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
 
-        // ŠÔ‚ğ~‚ß‚éi”CˆÓj
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Debug.Log("GameOverï¿½ï¿½ï¿½ï¿½");
+
+        // ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½~ï¿½ß‚ï¿½iï¿½Cï¿½Ój
         Time.timeScale = 0f;
     }
+    
+    public void RetryGame()
+    {
+        player.SetActive(true);
+        Camera.main.transform.SetParent(player.transform, false);
+        Camera.main.transform.position = Chiba_Camera.retryCameraPosition;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+        transform.rotation = Quaternion.identity; // ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
+
+        gameOverUI.SetActive(false);
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        player.transform.position = SaveManager.Instance.LoadPosition(); //playerï¿½ï¿½ï¿½Åï¿½ï¿½ÌˆÊ’uï¿½É–ß‚ï¿½
+        
+        Time.timeScale = 1f;
+    }
+
 }
